@@ -35,6 +35,8 @@ class Admin extends CI_Controller {
     $this->form_validation->set_rules('txtdateajout', 'dateajout', 'required');
 
     $this->form_validation->set_rules('txtdisponible', 'disponible', 'required');
+    $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
+    
 
       if ($this->form_validation->run()===false)
       {
