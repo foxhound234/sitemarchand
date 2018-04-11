@@ -9,7 +9,7 @@ class modelemarque extends CI_Model
     
     public function Retournermarques($nomarque==NULL)
     {
-         if($noplante==NULL)
+         if($nomarque==NULL)
          {
           $requete=$this->db->get('marque');
           return $requete->result_array();
