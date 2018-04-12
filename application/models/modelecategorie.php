@@ -7,7 +7,7 @@ public function __construct()
 }
 
   
-public function Retournercategorie($nocategorie==NULL)
+public function Retournercategorie($nocategorie = NULL)
 {
      if($nocategorie==NULL)
      {

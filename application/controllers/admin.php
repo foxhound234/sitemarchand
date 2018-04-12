@@ -36,8 +36,7 @@ class Admin extends CI_Controller {
 
     $this->form_validation->set_rules('txtdisponible', 'disponible', 'required');
     $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
-    
-
+    $DonneesInjectees['LesProduits'] = $this->modeleproduit->retournerProduit();
       if ($this->form_validation->run()===false)
       {
         $this->load->view('templates/Entete');

@@ -6,7 +6,7 @@ class modelemarque extends CI_Model {
         $this->load->database();
     }
     
-    public function Retournermarques($nomarque==NULL)
+    public function Retournermarques($nomarque=NULL)
     {
          if($nomarque==NULL)
          {

@@ -6,10 +6,11 @@ public function __construct()
     $this->load->database();
 }
 
-public function insereunclient($pDonnesaInserer)
+public function insererUnArticle($pDonneesAInserer)
+
 {
-    return $this->db->insert(('client',$pDonnesaInserer));
-}
+    return $this->db->insert('client', $pDonneesAInserer);
+} // insererUnArticle
 
 public function retournerUtilisateur($pclient)
 

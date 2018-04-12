@@ -42,7 +42,7 @@ echo form_input('txtdateajout', set_value('txtdateajout'));
 echo form_input('txtdispo', set_value('txtdispo'));
 
 foreach ($LesMarques as $UneMarque) {
-    $option['$UneMarque['Nom']']
+    $option=array(['$UneMarque['Nom']']);
 }
 echo form_submit('submit', 'enregistrement');
 
