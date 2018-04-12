@@ -6,7 +6,7 @@ public function __construct()
     $this->load->database();
 }
 
-public function insererUnArticle($pDonneesAInserer)
+public function insererUnclient($pDonneesAInserer)
 
 {
     return $this->db->insert('client', $pDonneesAInserer);

@@ -22,7 +22,12 @@ class modeleproduit extends CI_Model {
      $requete = $this->db->get_where('produit', array('Noproduit' => $pNoProduit));
      return $requete->row_array(); // retour d'un tableau associatif
  } 
- 
+ public function rechercheproduit($nomproduit)
+ {
+  $this->db->select('libelle,prix ht,nomimage');
+  $this->db->from('produit');
+  $this->db->like('libelle',$nomproduit);
+ }
 }
 
 /* End of file ModelName.php */

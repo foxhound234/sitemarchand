@@ -7,10 +7,9 @@ class Admin extends CI_Controller {
        parent::__construct();
        $this->load->model('modeleproduit');
        $this->load->model('modelecategorie');
-        $this->load->model('')
-       $this->load->library('session');
-  
-       if ($this->session->statut==0) // 0 : statut visiteur
+        $this->load->model('');
+         $this->load->library('session');
+       if ($this->session->statut=='c') // c : statut visiteur
        {
     $this->load->helper('url'); // pour utiliser redirect
     redirect('/client/connexion.php'); // pas les droits : redirection vers connexion
