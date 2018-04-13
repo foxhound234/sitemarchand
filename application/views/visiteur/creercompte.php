@@ -20,11 +20,11 @@ echo form_input('txtPrenom', set_value('txtPrenom'));
 
 echo form_label('adresse', 'txtadresse');
 
-echo form_input(txtadresse,set_value('txtadresse'));
+echo form_input('txtadresse',set_value('txtadresse'));
 
 echo form_label('ville', 'txtVille');
 
-echo form_input(txtVille,set_value('txtVille'));
+echo form_input('txtVille',set_value('txtVille'));
 
 echo form_label('codepostal','txtcodePostal');
 

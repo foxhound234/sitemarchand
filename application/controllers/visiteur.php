@@ -32,9 +32,9 @@ class visiteur extends CI_Controller{
       $this->form_validation->set_rules('txtmdp','mdp','required');
        if($this->form_validation->run()===false)
        {
-        $this->load->view('templates/Entete');
+        $this->load->view('templates/entete');
         $this->load->view('visiteur/creercompte', $DonneesInjectees);
-        $this->load->view('templates/PiedDePage');
+        $this->load->view('templates/piedDePage');
        }
        else
        {
@@ -57,14 +57,27 @@ class visiteur extends CI_Controller{
         $this->modeleclient->insererUnclient($client);
        }
     }
+    public function afficherlesproduits()
+    {
+     $config=array();
+    $config["base_url"] = site_url('visiteur/listerLesArticlesAvecPagination');
+    $config["total_rows"] =$this->modeleproduit->nombredeproduit();
+    $config["per_page"] = 5;
+    $config["uri_segment"] = 3; 
+    $config['first_link'] = 'Premier';
+
+    $config['last_link'] = 'Dernier';
+  
+    $config['next_link'] = 'Suivant';
+  
+    $config['prev_link'] = 'Précédent';
+    
+    $this->pagination->initialize($config);
+
+    $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+    $DonneesInjectees['TitreDeLaPage'] = 'Les produits';
 
 
-
-
-
-
-
-
-
-
+    }
 }
+

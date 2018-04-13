@@ -8,43 +8,38 @@ echo validation_errors(); // mise en place de la validation
 
 saisies sont réinjectées dans le formulaire */
 
-echo form_open('admin/ajouterproduit');
-
-<label for="txtlibelle"> le nom du produit</label> // creation d'un label devant la zone de saisie
-
-echo form_input('txtlibelle', set_value('txtlibelle'));
-
+echo form_open('admin/ajouterproduit');?>
+<label for="txtdetail"> détail du produit </label>
+<input name="txtlibelle" value="<?php echo set_value('txtlibelle'); ?>"></textarea><br/>
 <label for="txtdetail"> détail du produit </label>
 <textarea name="txtdetail" value="<?php echo set_value('txtdetail'); ?>"></textarea><br/>
 
 <label for="txtprixht">prixht</label>
-
-echo form_input('txtprixht',set_value('txtprixht'));*
-
+<input type="input" name="txtprixht" value="<?php echo set_value('txtprixht'); ?>" /><br/>
 <label for="txttva"> tva </label>
 
-echo form_input(txttauxtva,set_value('txttva'));
+<input type="input" name="txtttva" value="<?php echo set_value('txttva'); ?>" /><br/>
 
 <label for="txtimage"> nomdelimage</label>
 
-echo form_input('txtimage',set_value('txtimage'));
+<input type="input" name="txtttva" value="<?php echo set_value('txttva'); ?>" /><br/>
 
 <label for="txtquantitestock"> quantité dans le stock</label>
-
-echo form_input('txtquantitestock',set_value('txtquantitestock'));
+<input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
 
 <label for="txtdateajout">  date ajout </label>
-
-echo form_input('txtdateajout', set_value('txtdateajout'));
-
+<input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
 <label for="txtdispo"> disponible </label>
-
-echo form_input('txtdispo', set_value('txtdispo'));
-
+<input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
+<?php
 foreach ($LesMarques as $UneMarque) {
-    $option=array(['$UneMarque['Nom']']);
+  $option=$UneMarque['Nom'];
 }
-echo form_submit('submit', 'enregistrement');
-
-echo form_close();
+echo form_dropdown('marque', $options, 'default');
+foreach($LesCategorie as $Unecategorie){
+  $choix=$Unecategorie['libelle'];  
+}
+echo form_dropdown('categorie',$choix, 'default');
 ?>
+
+</form>
