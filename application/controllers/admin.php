@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
        $this->load->model('modeleproduit');
        $this->load->model('modelecategorie');
         $this->load->model('');
+        $this->load->model('modelemarque');
          $this->load->library('session');
        if ($this->session->statut=='c') // c : statut visiteur
        {

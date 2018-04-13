@@ -28,18 +28,24 @@ echo form_open('admin/ajouterproduit');?>
 <input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
 
 <label for="txtdateajout">  date ajout </label>
+
 <input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
+
 <label for="txtdispo"> disponible </label>
+
 <input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
+
 <?php
 foreach ($LesMarques as $UneMarque) {
   $option=$UneMarque['Nom'];
 }
 echo form_dropdown('marque', $options, 'default');
+?>
+<?php
 foreach($LesCategorie as $Unecategorie){
-  $choix=$Unecategorie['libelle'];  
+  $option=$Unecategorie['libelle'];  
 }
-echo form_dropdown('categorie',$choix, 'default');
+echo form_dropdown('categorie',$option, 'default');
 ?>
 
 </form>
