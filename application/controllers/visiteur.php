@@ -1,6 +1,6 @@
 <?php
 
-class visiteur extends CI_Controller{
+class Visiteur extends CI_Controller{
 
     public function __construct()
 
