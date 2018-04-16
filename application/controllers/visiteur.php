@@ -60,9 +60,9 @@ class Visiteur extends CI_Controller{
     public function afficherlesproduits()
     {
      $config=array();
-    $config["base_url"] = site_url('visiteur/listerLesArticlesAvecPagination');
+    $config["base_url"] = site_url('visiteur/listerLesproduit');
     $config["total_rows"] =$this->modeleproduit->nombredeproduit();
-    $config["per_page"] = 5;
+    $config["per_page"] = 3;
     $config["uri_segment"] = 3; 
     $config['first_link'] = 'Premier';
 
@@ -75,9 +75,28 @@ class Visiteur extends CI_Controller{
     $this->pagination->initialize($config);
 
     $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-    $DonneesInjectees['TitreDeLaPage'] = 'Les produits';
+ $DonneesInjectees['TitreDeLaPage'] = 'Les produits';
+  $DonneesInjectees["LesArticles"]=$this->modeleproduit-> retournerArticles($config["per_page"],$noPage);
+  $DonneesInjectees["lienspagination"]=$this->pagination->create_links();
 
+  $this->load->view('templates/entete');
 
+  $this->load->view('visiteur/listerlesproduit',$DonneesInjectees);
+
+  $this->load->view('templates/piedDePage');
     }
+ public function affichelescategorie()
+ {
+ $DonneesInjectees['lescategories']=$this->modelecategorie->Retournercategorie();
+  $DonneesInjectees['TitredelaPage']='les Catégorie';
+  $this->load->view('templates/entete');
+  $this->load->view('visiteur/listerlesCategorie',$DonneesInjectees);
+   $this->load->view('templates/entete');
+ }
+ public function afficherlesproduitscategorie($nocategorie=null)
+ {
+
+ }
+ 
 }
 

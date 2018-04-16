@@ -9,8 +9,6 @@ class client extends CI_Controller{
 
   $this->load->helper('assets');
 
-  $this->load->library('pagination');
-
   $this->load->model('modeleclient');
 
   $this->load->model('modeleproduit');

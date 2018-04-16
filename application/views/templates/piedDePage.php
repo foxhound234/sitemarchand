@@ -1,4 +1,4 @@
-<p><em>&copy; Lycée Rabelais</em></p>
+<p><em>&copy; site marchnd by Morgan Le BERRE</em></p>
 
 </body>
 
