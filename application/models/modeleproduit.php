@@ -17,7 +17,8 @@ class modeleproduit extends CI_Model {
   $this->db->from('produit');
   $this->db->like('libelle',$nomproduit);
  }
-public function retournerArticlescatego($nocategorie,$nombreDeLignesARetourner, $noPremiereLigneARetourner)
+ 
+public function retournerproduitcatego($nocategorie,$nombreDeLignesARetourner, $noPremiereLigneARetourner)
 {
     $this->db->limit($nombreDeLignesARetourner, $noPremiereLigneARetourner);
   
@@ -34,9 +35,10 @@ public function retournerArticlescatego($nocategorie,$nombreDeLignesARetourner, 
 
 public function nombredeproduitcatego($nocategorie)
 {
-
-
-    
+         $this->db->count_all('produit');
+         $this->db->where('NOCATEGORIE',$nocategorie);
+         $requete=$this->db->get();
+         return $requete;
 }
 
 
@@ -44,7 +46,16 @@ public function nombredeproduitcatego($nocategorie)
  {
     return $this->db->count_all("produit");
  }
- public function retournerArticles($nombreDeLignesARetourner, $noPremiereLigneARetourner)
+
+	public function retournerproduit($pNoproduit)
+		{
+			// ici on va chercher l'article dont l'id est $pNoArticle
+            $requete = $this->db->get_where('produit', array('NOPRODUIT' => $pNoproduit));
+			return $requete->row_array(); // retour d'un tableau associatif, idem
+		} // retournerArticles
+
+
+ public function retournerArticleslimite($nombreDeLignesARetourner, $noPremiereLigneARetourner)
 {// Nota Bene : surcharge non supportée par PHP
 $this->db->limit($nombreDeLignesARetourner, $noPremiereLigneARetourner);
 

@@ -10,33 +10,30 @@ saisies sont réinjectées dans le formulaire */
 
 echo form_open('Visiteur/ajouterunclient');
 
-echo form_label('Nom','txtNom'); // creation d'un label devant la zone de saisie
+echo form_label('prenom','lbxPrenom');
 
-echo form_input('txtNom', set_value('txtNom')).'<BR>';
+echo form_input('txtPrenom','').'<BR>';
 
-echo form_label('prenom','txtPrenom');
+echo form_label('Nom','lbxNom'); // creation d'un label devant la zone de saisie
 
-echo form_input('txtPrenom', set_value('txtPrenom')).'<BR>';
+echo form_input('txtNom','').'<BR>';
+echo form_label('adresse', 'lbxadresse');
 
-echo form_label('adresse', 'txtadresse');
+echo form_input('txtadresse','').'<BR>';
 
-echo form_input('txtadresse',set_value('txtadresse')).'<BR>';
+echo form_label('ville', 'lbxVille');
 
-echo form_label('ville', 'txtVille');
+echo form_input('txtVille','').'<BR>';
+echo form_label('codepostal','lbxcodePostal');
 
-echo form_input('txtVille',set_value('txtVille')).'<BR>';
+echo form_input('txtcodePostal','').'<BR>';
+echo form_label('email', 'lbxemail');
 
-echo form_label('codepostal','txtcodePostal');
+echo form_input('txtEmail','').'<BR>';
 
-echo form_input('txtcodePostal',set_value('txtcodePostal')).'<BR>';
+echo form_label('Mot de passe','lbxMdp');
 
-echo form_label('email', 'txtemail');
-
-echo form_input('txtemail',set_value('txtemail')).'<BR>';
-
-echo form_label('Mot de passe','txtMdp');
-
-echo form_password('txtMdp', set_value('txtMdp')).'<BR>';
+echo form_password('txtMdp','').'<BR>';
 
 echo form_submit('submit', 'enregistrement').'<BR>';
 

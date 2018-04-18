@@ -8,44 +8,54 @@ echo validation_errors(); // mise en place de la validation
 
 saisies sont réinjectées dans le formulaire */
 
-echo form_open('admin/ajouterproduit');?>
-<label for="txtdetail"> détail du produit </label>
-<input name="txtlibelle" value="<?php echo set_value('txtlibelle'); ?>"></textarea><br/>
-<label for="txtdetail"> détail du produit </label>
-<textarea name="txtdetail" value="<?php echo set_value('txtdetail'); ?>"></textarea><br/>
+echo form_open('admin/ajouterproduit');
+ echo form_label('nom du produit', 'lbllibelle');
 
-<label for="txtprixht">prixht</label>
-<input type="input" name="txtprixht" value="<?php echo set_value('txtprixht'); ?>" /><br/>
-<label for="txttva"> tva </label>
+ echo  form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required')).'<BR>';
 
-<input type="input" name="txtttva" value="<?php echo set_value('txttva'); ?>" /><br/>
+ echo form_label('détail du produit', 'lbldétail');
 
-<label for="txtimage"> nomdelimage</label>
+ echo  form_textarea('txtdetail', '',array('required'=>'required')).'<BR>';
 
-<input type="input" name="txtttva" value="<?php echo set_value('txttva'); ?>" /><br/>
 
-<label for="txtquantitestock"> quantité dans le stock</label>
-<input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
+ 
+  echo  form_label('prixht','lblprixht');
+  echo  form_input('txtprixht', '',array('pattern'=>'[0-9]','title'=>'le prix doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
 
-<label for="txtdateajout">  date ajout </label>
+  echo  form_label('tauxtva', 'lbltva');
 
-<input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
+  echo  form_input('txttva', '',array('pattern'=>'[0-9]' ,'title'=>'la tva doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
 
-<label for="txtdispo"> disponible </label>
+   echo form_label('image', 'lblimage');
+ 
+   echo form_input('txtimage', '',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'Un nom de fichier doit commencer par une lettre', 'required'=>'required')).'<BR>';
+   
+   echo form_label('quantité dans le stock', 'lblquantitestock');
 
-<input type="input" name="txtquantitestock" value="<?php echo set_value('txtquantitestock'); ?>" /><br/>
-
+   echo form_input(array( 'name'=>'txtquantitestock','type'=>'number', 'min'=>'0','max'=>'120','step'=>'1')).'<BR>';
+  
+  echo form_label('dateajout', 'lbldateajout');
+  
+  echo form_input('txtdateajout', '',array('pattern'=>'(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d','title'=>'la date doit etre au format jj/mm/aaaa')).'<BR>';
+  
+  echo form_label('disponibilité', 'lbldispo');
+  $liste=array(
+     'TRUE'=> 'VRAI',
+     'FALSE'=> 'FAUX'
+  );
+  echo form_dropdown('txtdispo',$liste,'default');
+?>
 <?php
 foreach ($LesMarques as $UneMarque) {
-  $option=$UneMarque['Nom'];
+  $option=array($UneMarque['noMarque']=>$UneMarque['Nom']);
 }
 echo form_dropdown('marque', $options, 'default');
 ?>
 <?php
 foreach($LesCategorie as $Unecategorie){
-  $option=$Unecategorie['libelle'];  
+  $categorie=array($Unecategorie['noCategorie']=>$Unecategorie['libelle']);  
 }
-echo form_dropdown('categorie',$option, 'default');
+echo form_dropdown('categorie',$categorie, 'default');
 ?>
 
 </form>

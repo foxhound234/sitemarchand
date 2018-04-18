@@ -19,18 +19,18 @@ class client extends CI_Controller{
 public function connexion()
 {
 $this->load->helper('form');
-$this->load->helper('form_validation');
+$this->load->library('form_validation');
 $DonneesInjectees['TitreDeLaPage'] = 'Se connecter';
 $this->form_validation->set_rules('txtEmail', 'email', 'required');
 
 $this->form_validation->set_rules('txtMotDePasse', 'Mot de passe', 'required');
 
-if ($this->form_validation->run() === FALSE)
+if ($this->form_validation->run()===FALSE)
 {
 
     $this->load->view('templates/Entete');
 
-    $this->load->view('visiteur/connexion', $DonneesInjectees); // on renvoie le formulaire
+    $this->load->view('client/connexion', $DonneesInjectees); // on renvoie le formulaire
 
     $this->load->view('templates/PiedDePage');
     
