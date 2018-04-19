@@ -55,6 +55,8 @@ class Visiteur extends CI_Controller{
              'profil'=>'C'
             ); 
         $this->modeleclient->insererUnclient($client);
+        $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
+                $this->load->view('administrateur/insertionReussie');
        }
     }
     public function VoirunProduit($NOPRODUIT=false)

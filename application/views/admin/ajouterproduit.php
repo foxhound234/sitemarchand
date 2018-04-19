@@ -20,11 +20,11 @@ echo form_open('admin/ajouterproduit');
 
  
   echo  form_label('prixht','lblprixht');
-  echo  form_input('txtprixht', '',array('pattern'=>'[0-9]','title'=>'le prix doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
+  echo  form_input('txtprixht', '',array('pattern'=>".{0,}",'title'=>'le prix doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
 
   echo  form_label('tauxtva', 'lbltva');
 
-  echo  form_input('txttva', '',array('pattern'=>'[0-9]' ,'title'=>'la tva doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
+  echo  form_input('txttva', '',array('pattern'=>".{0,10}" ,'title'=>'la tva doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
 
    echo form_label('image', 'lblimage');
  
@@ -40,22 +40,28 @@ echo form_open('admin/ajouterproduit');
   
   echo form_label('disponibilité', 'lbldispo');
   $liste=array(
-     'TRUE'=> 'VRAI',
-     'FALSE'=> 'FAUX'
+     '1'=> 'VRAI',
+     '0'=> 'FAUX'
   );
-  echo form_dropdown('txtdispo',$liste,'default');
+  echo form_dropdown('txtdispo',$liste,'default').'<BR>';
 ?>
+<select name"txtmarque" required>
+<option value="" selected>choisie une marque</option>
 <?php
 foreach ($LesMarques as $UneMarque) {
-  $option=array($UneMarque['noMarque']=>$UneMarque['Nom']);
+  echo '<option value="'.$UneMarque['NOMARQUE'].'">'.$UneMarque['NOM'].'</option>';
 }
-echo form_dropdown('marque', $options, 'default');
 ?>
+</select>
+<select name"txtcategorie" required> 
+<option value="" selected>choisie une categorie</option>
 <?php
 foreach($LesCategorie as $Unecategorie){
-  $categorie=array($Unecategorie['noCategorie']=>$Unecategorie['libelle']);  
+  echo '<option value="'.$Unecategorie['NOCATEGORIE'].'">'.$Unecategorie['LIBELLE'].'</option>';
 }
-echo form_dropdown('categorie',$categorie, 'default');
 ?>
-
-</form>
+</select> </br>
+<?php
+echo form_submit('btnajouter', 'ajouter').'<BR>';
+echo form_close();
+?>

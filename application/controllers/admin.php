@@ -20,32 +20,32 @@ class Admin extends CI_Controller {
    public function ajouterunproduit()
    {
     $this->load->helper('form');
-    $this->load->library('form_validation');
     $DonneesInjectees['TitreDeLaPage'] = 'Ajouter un produit';
-    $this->form_validation->set_rules('txtlibelle', 'libelle', 'required');
-
-    $this->form_validation->set_rules('txtdetail', 'detail', 'required');
-    
-    $this->form_validation->set_rules('txtprixht', 'prixht', 'required');
-
-    $this->form_validation->set_rules('txttva', 'tauxtva', 'required');
-    
-    $this->form_validation->set_rules('txtquantitestock', 'quantitestock', 'required');
- 
-    $this->form_validation->set_rules('txtdateajout', 'dateajout', 'required');
-
-    $this->form_validation->set_rules('txtdisponible', 'disponible', 'required');
     $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
     $DonneesInjectees['LesCategorie'] = $this->modelecategorie->Retournercategorie();
-      if ($this->form_validation->run()===false)
+      if ($this->input->post('btnajouter'))
       {
-        $this->load->view('templates/Entete');
-        $this->load->view('admin/ajouterproduit', $DonneesInjectees);
-        $this->load->view('templates/PiedDePage');
+        $donneesAInserer =array(
+          'libelle' =>$this->input->post('txtlibelle'),
+          'detail' =>$this->input->post('txtdetail'),
+          'prixHT' =>$this->input->post('txtprixht'),
+          'tauxTVA' =>$this->input->post('txttva'),
+          'nomimage'=>$this->input->post('txtimage'),
+          'quantiteenStock'=>$this->input->post('txtquantitestock'),
+          'dateajout'=>$this->input->post('txtdateajout'),
+          'disponible'=>$this->input->post('txtdispo'),
+          'noMarque'=>$this->input->post('txtmarque'),
+          'noCategorie'=>$this->input->post('txtcategorie'),
+        );
+        $this->modeleproduit->ajouterproduit($donneesAInserer);
+        $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
+        $this->load->view('visiteur/insertionReussie');
       }
        else
        {
-
+        $this->load->view('templates/Entete');
+        $this->load->view('admin/ajouterproduit', $DonneesInjectees);
+        $this->load->view('templates/PiedDePage');
        }
 
    }
