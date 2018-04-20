@@ -7,9 +7,9 @@ class modeleproduit extends CI_Model {
     {
         $this->load->database();
     }
-    public function ajouterproduit($pDonneesAInserer)
+    public function insertionproduit($pDonneesAInserer)
     {
-    return $this->db->insert('produit', $pDonneesAInserer);
+    return $this->db->insert('produit',$pDonneesAInserer);
     }
  public function rechercheproduit($nomproduit)
  {

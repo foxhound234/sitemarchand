@@ -23,23 +23,22 @@ class Admin extends CI_Controller {
     $DonneesInjectees['TitreDeLaPage'] = 'Ajouter un produit';
     $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
     $DonneesInjectees['LesCategorie'] = $this->modelecategorie->Retournercategorie();
-      if ($this->input->post('btnajouter'))
+  
+      if ($this->input->post('boutonAjouter'))
       {
         $donneesAInserer =array(
-          'libelle' =>$this->input->post('txtlibelle'),
-          'detail' =>$this->input->post('txtdetail'),
-          'prixHT' =>$this->input->post('txtprixht'),
-          'tauxTVA' =>$this->input->post('txttva'),
-          'nomimage'=>$this->input->post('txtimage'),
-          'quantiteenStock'=>$this->input->post('txtquantitestock'),
-          'dateajout'=>$this->input->post('txtdateajout'),
-          'disponible'=>$this->input->post('txtdispo'),
-          'noMarque'=>$this->input->post('txtmarque'),
-          'noCategorie'=>$this->input->post('txtcategorie'),
-        );
-        $this->modeleproduit->ajouterproduit($donneesAInserer);
-        $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
-        $this->load->view('visiteur/insertionReussie');
+          'NOCATEGORIE'=>$this->input->post('nocategorie'),
+          'NOMARQUE'=>$this->input->post('nomarque'),
+          'LIBELLE' =>$this->input->post('txtlibelle'),
+          'DETAIL' =>$this->input->post('txtdetail'),
+          'PRIXHT' =>$this->input->post('txtprixht'),
+          'TAUXTVA' =>$this->input->post('txttva'),
+          'NOMIMAGE'=>$this->input->post('txtimage'),
+          'QUANTITEENSTOCK'=>$this->input->post('txtquantitestock'),
+          'DATEAJOUT'=>$this->input->post('txtdateajout'),
+          'DISPONIBLE'=>$this->input->post('txtdispo'),
+            );
+        $this->modeleproduit->insertionproduit($donneesAInserer);
       }
        else
        {
@@ -47,7 +46,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/ajouterproduit', $DonneesInjectees);
         $this->load->view('templates/PiedDePage');
        }
-
+        
    }
     
 
