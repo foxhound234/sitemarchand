@@ -24,27 +24,32 @@ class Admin extends CI_Controller {
     $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
     $DonneesInjectees['LesCategorie'] = $this->modelecategorie->Retournercategorie();
   
-      if ($this->input->post('boutonAjouter'))
+      if ($this->input->post('boutonAjouter')===null)
       {
-        $donneesAInserer =array(
-          'NOCATEGORIE'=>$this->input->post('nocategorie'),
-          'NOMARQUE'=>$this->input->post('nomarque'),
-          'LIBELLE' =>$this->input->post('txtlibelle'),
-          'DETAIL' =>$this->input->post('txtdetail'),
-          'PRIXHT' =>$this->input->post('txtprixht'),
-          'TAUXTVA' =>$this->input->post('txttva'),
-          'NOMIMAGE'=>$this->input->post('txtimage'),
-          'QUANTITEENSTOCK'=>$this->input->post('txtquantitestock'),
-          'DATEAJOUT'=>$this->input->post('txtdateajout'),
-          'DISPONIBLE'=>$this->input->post('txtdispo'),
-            );
-        $this->modeleproduit->insertionproduit($donneesAInserer);
+        $this->load->view('templates/Entete');
+        $this->load->view('admin/ajouterproduit', $DonneesInjectees);
+        $this->load->view('templates/PiedDePage');
       }
-       else
+      else
        {
         $this->load->view('templates/Entete');
         $this->load->view('admin/ajouterproduit', $DonneesInjectees);
         $this->load->view('templates/PiedDePage');
+        $donneesAInserer=array(
+          'LIBELLE' =>$this->input->post('txtlibelle'),
+          'DETAIL' =>$this->input->post('txtdetail'),
+          'PRIXHT' =>$this->input->post('txtprixht'),
+          'TAUXTVA' =>$this->input->post('txttva'),
+          'QUANTITEENSTOCK'=>$this->input->post('txtquantitestock'),
+          'DATEAJOUT'=>$this->input->post('txtdateajout'),
+          'NOMIMAGE'=>$this->input->post('txtimage'),
+          'DISPONIBLE'=>$this->input->post('txtdispo'),
+          'NOMARQUE'=>$this->input->post('nomarque'),
+          'NOCATEGORIE'=>$this->input->post('nocategorie'),
+            );
+        $this->modeleproduit->insertionproduit($donneesAInserer);
+        $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
+        $this->load->view('visiteur/insertionReussie');
        }
         
    }

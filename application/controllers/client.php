@@ -19,16 +19,11 @@ class client extends CI_Controller{
 public function connexion()
 {
 $this->load->helper('form');
-$this->load->library('form_validation');
-$DonneesInjectees['TitreDeLaPage'] = 'Se connecter';
-$this->form_validation->set_rules('txtEmail', 'email', 'required');
-
-$this->form_validation->set_rules('txtMotDePasse', 'Mot de passe', 'required');
-
-if ($this->form_validation->run()===FALSE)
+$DonneesInjectees['TitreDeLaPage']='connexion';
+if($this->input->post('btnconnect')===null)
 {
 
-    $this->load->view('templates/Entete');
+    $this->load->view('templates/entete');
 
     $this->load->view('client/connexion', $DonneesInjectees); // on renvoie le formulaire
 
@@ -39,11 +34,10 @@ if ($this->form_validation->run()===FALSE)
 else
 {
  $Utilisateur= array(
-    'email'=>$this->input->post('txtEmail'),
-    'motsDePasse'=>$this->input->post('txtMotDePasse'),
+    'EMAIL'=>$this->input->post('txtEmail'),
+    'MOTDEPASSE'=>$this->input->post('txtMotDePasse'),
  );
 $Utilisateurretourner = $this->modeleclient->retournerUtilisateur($Utilisateur);
-
 
 
 if(!($Utilisateurretourner==null))

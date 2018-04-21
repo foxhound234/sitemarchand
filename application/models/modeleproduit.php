@@ -55,11 +55,11 @@ public function nombredeproduitcatego($nocategorie)
 		} // retournerArticles
 
 
- public function retournerArticleslimite($nombreDeLignesARetourner, $noPremiereLigneARetourner)
+ public function retournerproduitlimite($nombreDeLignesARetourner, $noPremiereLigneARetourner)
 {// Nota Bene : surcharge non supportée par PHP
 $this->db->limit($nombreDeLignesARetourner, $noPremiereLigneARetourner);
 
-$requete = $this->db->get("tabarticle");
+$requete = $this->db->get("produit");
 
 if ($requete->num_rows() > 0) { // si nombre de lignes > 0
 

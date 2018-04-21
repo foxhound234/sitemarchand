@@ -1,14 +1,8 @@
 <h2><?php echo $TitreDeLaPage ?></h2>
 
 <?php
+echo form_open('Admin/ajouterunproduit');
 
-echo validation_errors(); // mise en place de la validation
-
-/* set_value : en cas de non validation les données déjà
-
-saisies sont réinjectées dans le formulaire */
-
-echo form_open('admin/ajouterproduit');
  echo form_label('nom du produit :', 'lbllibelle');
 
  echo  form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required')).'<BR>';
@@ -32,37 +26,34 @@ echo form_open('admin/ajouterproduit');
    
    echo form_label('quantité dans le stock', 'lblquantitestock');
 
-   echo form_input(array( 'name'=>'txtquantitestock','type'=>'number', 'min'=>'0','max'=>'1000','step'=>'1')).'<BR>';
+   echo form_input(array( 'name'=>'txtquantitestock','type'=>'number', 'min'=>'0','max'=>'1000','step'=>'1','required'=>'required')).'<BR>';
   
   echo form_label('dateajout', 'lbldateajout');
   
-  echo form_input('txtdateajout', '',array('type'=>'date','name'=>'txtdateajout')).'<BR>';
+  echo form_input('txtdateajout', '',array('type'=>'date','name'=>'txtdateajout','required'=>'required')).'<BR>';
   
   echo form_label('disponibilité', 'lbldispo');
   $liste=array(
      '1'=> 'VRAI',
      '0'=> 'FAUX'
   );
-  echo form_dropdown('txtdispo',$liste,'default').'<BR>';
-?>
-<?php echo form_label('Numero de marque :','lblnomarque');
-?>
-<?php
+  echo form_dropdown('txtdispo',$liste,'default',array('required'=>'required')).'<BR>';
+
+ echo form_label('Numero de marque :','lblnomarque');
+
 foreach ($LesMarques as $UneMarque) {
   $option='<option value="'.$UneMarque['NOMARQUE'].'">'.$UneMarque['NOM'].'</option>';
+
 }
-echo form_dropdown('nomarque',$option, 'default');
-?>
-<?php echo form_label('Numero de categorie:','lblnocategorie');
-?>
-<?php
+echo form_dropdown('nomarque',$option, 'default',array('required'=>'required')).'<BR>';
+
+ echo form_label('Numero de categorie:','lblnocategorie');
 foreach($LesCategorie as $Unecategorie){
   $categorie='<option value="'.$Unecategorie['NOCATEGORIE'].'">'.$Unecategorie['LIBELLE'].'</option>';
 }
-echo form_dropdown('nocategorie',$categorie, 'default');
-?>
- <BR>
-<?php
+echo form_dropdown('nocategorie',$categorie, 'default',array('required'=>'required')).'<BR>';
+
 echo form_submit('boutonAjouter', 'ajouter').'<BR>';
+
 echo form_close();
 ?>
