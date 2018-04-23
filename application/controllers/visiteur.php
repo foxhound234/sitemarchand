@@ -16,12 +16,18 @@ class Visiteur extends CI_Controller{
        $this->load->model('modeleclient'); // chargement modèle, obligatoire
  
        $this->load->model('modeleproduit');
+
+       $this->load->helper('form');
+
+       $this->load->library('form_validation');
+
+       $this->load->helper('url');
+
+       $this->load->library('cart');
     } // __construct
 
     public function ajouterunclient()
     {
-     $this->load->helper('form');
-     $this->load->library('form_validation');
      $DonneesInjectees['TitreDeLaPage'] = 'enregistrement';
       $this->form_validation->set_rules('txtNom','nom','required');
       
@@ -144,8 +150,7 @@ class Visiteur extends CI_Controller{
 
  public function ajouterauxpanier($NOPRODUIT=null)
  {
-  $this->load->library('cart');
-  $this->load->helper('form');
+  
   $Donneesinsérer=$this->modeleproduit->retournerproduit($NOPRODUIT);
   if (empty($Donneesinsérer))  
   {
