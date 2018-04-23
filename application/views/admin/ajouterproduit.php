@@ -40,20 +40,29 @@ echo form_open('Admin/ajouterunproduit');
   echo form_dropdown('txtdispo',$liste,'default',array('required'=>'required')).'<BR>';
 
  echo form_label('Numero de marque :','lblnomarque');
+?>
+<select name "nomarque" required>
+<option value="" selected>choisir une marque</option>
+<?php 
 
 foreach ($LesMarques as $UneMarque) {
   $option='<option value="'.$UneMarque['NOMARQUE'].'">'.$UneMarque['NOM'].'</option>';
 
 }
-echo form_dropdown('nomarque',$option, 'default',array('required'=>'required')).'<BR>';
-
+?>
+</select> <BR>
+<?php
  echo form_label('Numero de categorie:','lblnocategorie');
+ ?>
+ <select name "nocategorie" required>
+<option value="" selected>choisir une categorie </option>
+<?php
 foreach($LesCategorie as $Unecategorie){
   $categorie='<option value="'.$Unecategorie['NOCATEGORIE'].'">'.$Unecategorie['LIBELLE'].'</option>';
 }
-echo form_dropdown('nocategorie',$categorie, 'default',array('required'=>'required')).'<BR>';
-
+?>
+</select> <BR>
+<?php
 echo form_submit('boutonAjouter', 'ajouter').'<BR>';
-
 echo form_close();
 ?>
