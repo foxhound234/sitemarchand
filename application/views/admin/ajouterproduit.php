@@ -46,7 +46,7 @@ echo form_open('Admin/ajouterunproduit');
 <?php 
 
 foreach ($LesMarques as $UneMarque) {
-  $option='<option value="'.$UneMarque['NOMARQUE'].'">'.$UneMarque['NOM'].'</option>';
+ echo '<option value="'.$UneMarque['NOMARQUE'].'">'.$UneMarque['NOM'].'</option>';
 
 }
 ?>
@@ -58,7 +58,7 @@ foreach ($LesMarques as $UneMarque) {
 <option value="" selected>choisir une categorie </option>
 <?php
 foreach($LesCategorie as $Unecategorie){
-  $categorie='<option value="'.$Unecategorie['NOCATEGORIE'].'">'.$Unecategorie['LIBELLE'].'</option>';
+  echo '<option value="'.$Unecategorie['NOCATEGORIE'].'">'.$Unecategorie['LIBELLE'].'</option>';
 }
 ?>
 </select> <BR>

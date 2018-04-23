@@ -92,7 +92,7 @@ class Visiteur extends CI_Controller{
 
     $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
  $DonneesInjectees['TitreDeLaPage'] = 'Les produits';
-  $DonneesInjectees["LesArticles"]=$this->modeleproduit->retournerproduitlimite($config["per_page"],$noPage);
+  $DonneesInjectees["Lesproduits"]=$this->modeleproduit->retournerproduitlimite($config["per_page"],$noPage);
   $DonneesInjectees["lienspagination"]=$this->pagination->create_links();
 
   $this->load->view('templates/entete');
