@@ -6,24 +6,9 @@ class Visiteur extends CI_Controller{
 
     {
        parent::__construct();
- 
-       $this->load->helper('url');
- 
-       $this->load->helper('assets'); // helper 'assets' ajouté a Application
- 
-       $this->load->library('pagination');
- 
-       $this->load->model('modeleclient'); // chargement modèle, obligatoire
- 
-       $this->load->model('modeleproduit');
-
-       $this->load->helper('form');
-
+   
        $this->load->library('form_validation');
 
-       $this->load->helper('url');
-
-       $this->load->library('cart');
     } // __construct
 
     public function ajouterunclient()
@@ -61,22 +46,40 @@ class Visiteur extends CI_Controller{
              'profil'=>'C'
             ); 
         $this->modeleclient->insererUnclient($client);
-        $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
+        $this->load->helper('url');// helper chargé pour utilisation de site_url (dans la vue)
         $this->load->view('visiteur/insertionReussie');
        }
     }
     public function VoirunProduit($NOPRODUIT=false)
     {
-     $DonneesInjectees['unArticle']=$this->modeleproduit->retournerproduit($NOPRODUIT);
+     $DonneesInjectees['unProduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
     
-      if (empty($DonneesInjectees['unArticle']))  
+      if (empty($DonneesInjectees['unProduit']))  
       {
        show_404();
       }
-      $DonneesInjectees['TitreDeLaPage'] = $DonneesInjectees['unArticle']['cTitre'];
+      $DonneesInjectees['TitreDeLaPage'] = $DonneesInjectees['unProduit']['LIBELLE'];
+      if($this->input->post('boutonajouter')===null)
+      {
+        $this->load->view('templates/Entete');
+        $this->load->view('visiteur/VoirUnArticle', $DonneesInjectees);
+        $this->load->view('templates/PiedDePage');
+
+      }
+     else
+     {
       $this->load->view('templates/Entete');
-           $this->load->view('visiteur/VoirUnArticle', $DonneesInjectees);
-           $this->load->view('templates/PiedDePage');
+      $this->load->view('admin/ajouterproduit', $DonneesInjectees);
+      $this->load->view('templates/PiedDePage');
+      $donneesAInserer['insertion'] =array(
+        'quantite'=>$this->input->post('txtquantitestock')
+      );
+     $donneesAInserer['leproduit']=$DonneesInjectees['unProduit'].$donneesAInserer['insertion'];
+     $this->cart->insert($donneesAInserer['leproduit']);
+     $this->load->helper('url');
+     $this->load->view('Visiteur/insertionReussie');
+      }
+    
     }
 
     public function afficherlesproduits()
@@ -148,25 +151,5 @@ class Visiteur extends CI_Controller{
 
  }
 
- public function ajouterauxpanier($NOPRODUIT=null)
- {
-  
-  $Donneesinsérer=$this->modeleproduit->retournerproduit($NOPRODUIT);
-  if (empty($Donneesinsérer))  
-  {
-   show_404();
-  }
-  if ($this->input->post('boutonAjouter')) 
-  {
-    $this->cart->insert($Donneesinsérer);
-  }
-  else
-  {
-    $this->load->view('templates/Entete');
-    $this->load->view('visiteur/voirunproduit', $DonneesInjectees);
-    $this->load->view('templates/PiedDePage');
-  }
- }
- 
 }
 
